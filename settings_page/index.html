@@ -16,36 +16,42 @@
             <div class="settings-block">
                 <div class="settings-item">
                     <span>Choose a plant</span>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown button
+                    <div class="dropdown plant-dropdown">
+                        <button class="btn plant-dropdown-btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Plant
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          <li><a class="dropdown-item plant-dropdown-item" href="#">Tulips</a></li>
                         </ul>
                       </div>
                 </div>
                 <div class="settings-item">
-                    <span>Set date and time</span>
-                    <input>
+                    <span>Set date and time</span><br>
+                    <input type="date"><input type="time">
                 </div>
                 <div class="settings-item">
                     <span>Choose a plan</span>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown button
+                    <div class="dropdown plan-dropdown">
+                        <button class="plan-dropdown-btn btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Plan 
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          <li><a class="dropdown-item plan-dropdown-item" href="#">Auto</a></li>
+                          <li><a class="dropdown-item plan-dropdown-item" href="#">My plan</a></li>
                         </ul>
                       </div>
+                <div class="plan-block hidden">
+                    <h4>My plan</h4>
+                    <div class="plan-item"><div>Humidity, %</div><input type="text"></div>
+                    <div class="plan-item">Temperature, C<input type="text"></div>
+                    <div class="plan-item">Acidity, pH<input type="text"></div>
+                    <div class="plan-item">Light, %<input type="text"></div>
                 </div>
+                </div>
+                <button type="button" class="btn btn-secondary btn-start"><a href="../emulation_page/index.html">Start emulation</a></button>
             </div>
         </main>
     </div>
+    <script src="app.js"></script>
 </body>
 </html>
