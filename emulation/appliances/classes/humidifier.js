@@ -6,7 +6,7 @@ class Humidlifier extends Appliance {
         this.#essentialHumidity = humidity;
     }
 
-    getHumidity() {
+    getEssentialHumidity() {
         return this.#essentialHumidity;
     }
 }

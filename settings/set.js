@@ -1,12 +1,17 @@
 let set_block = document.querySelector(".settings-block");
 let plan_block = document.querySelector(".plan-block");
-let plan_dropdown = document.querySelector(".plan-dropdown");
 let plan_dropdown_items = document.querySelectorAll(".plan-dropdown-item");
 let plan_dropdown_btn = document.querySelector(".plan-dropdown-btn");
 
-let plant_dropdown = document.querySelector(".plant-dropdown");
 let plant_dropdown_items = document.querySelectorAll(".plant-dropdown-item");
 let plant_dropdown_btn = document.querySelector(".plant-dropdown-btn");
+
+let user_plan = {
+    humidity: null,
+    temperature: null,
+    acidity: null,
+    light: null,
+};
 
 for (let item of plant_dropdown_items)
     item.addEventListener("click", () => {
@@ -24,3 +29,16 @@ for (let item of plan_dropdown_items)
             set_block.classList.add("wide-block");
         }
     });
+
+window.addEventListener("unload", () => {
+    if (!plan_block.classList.contains("hidden")) {
+        let parametersValues = document.querySelectorAll(".plan-item+input");
+        let i = 0;
+        for (let parameter in user_plan) {
+            user_plan[parameter] = parametersValues[i];
+            i++;
+        }
+    }
+});
+
+module.exports = user_plan;
