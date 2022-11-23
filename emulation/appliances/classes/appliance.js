@@ -44,3 +44,5 @@ class Appliance {
         }
     }
 }
+
+export default Appliance;

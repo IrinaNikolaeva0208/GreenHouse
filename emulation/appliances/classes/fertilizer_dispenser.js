@@ -1,3 +1,5 @@
+import Appliance from "./appliance.js";
+
 class FertilizerDispenser extends Appliance {
     #essentialAcidity;
 
@@ -10,3 +12,5 @@ class FertilizerDispenser extends Appliance {
         return this.#essentialAcidity;
     }
 }
+
+export default FertilizerDispenser;

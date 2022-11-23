@@ -1,4 +1,4 @@
-let userPlan = require("../settings/set");
+import userPlan from "../settings/set.js";
 
 let autoPlan = {
     humidity: 75,
@@ -8,4 +8,5 @@ let autoPlan = {
 };
 
 let essentialPlan = Object.assign(userPlan.humidity ? userPlan : autoPlan);
-module.exports = essentialPlan;
+
+export default essentialPlan;

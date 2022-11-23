@@ -1,3 +1,5 @@
+import Appliance from "./appliance.js";
+
 class Humidlifier extends Appliance {
     #essentialHumidity;
 
@@ -10,3 +12,5 @@ class Humidlifier extends Appliance {
         return this.#essentialHumidity;
     }
 }
+
+export default Humidlifier;

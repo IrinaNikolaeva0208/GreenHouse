@@ -8,7 +8,7 @@ class Plant {
         this.#plantPositionY = plantPositionY;
     }
 
-    calculateGrowthRate(totalGrade) {
+    setGrowthRate(totalGrade) {
         this.#growthRate = 100 * totalGrade;
     }
 
@@ -16,3 +16,5 @@ class Plant {
         return this.#growthRate;
     }
 }
+
+export default Plant;

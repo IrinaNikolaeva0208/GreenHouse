@@ -86,13 +86,16 @@ p{
 }
 
 .greenhouse-block {
-    width: 100%;
+    width: 96%;
     height: 95%;
     border: solid 10px rgb(41, 41, 41);
+    background: url(../assets/images/uIQK9dyxHcXCiZmrj85JupMNnaH0y3z2o_AG8kiXwKUIgcR28wi1OFwtSlYmC0j56KO6fpIRg2skjxV5NU8ghnuV.jpg) no-repeat;
+    background-size: cover;
 }
 
 .row {
     height: 90%;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }

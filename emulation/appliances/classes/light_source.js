@@ -1,3 +1,5 @@
+import Appliance from "./appliance.js";
+
 class LightSource extends Appliance {
     #LightLevel;
 
@@ -6,3 +8,5 @@ class LightSource extends Appliance {
         this.#LightLevel = lightLevel;
     }
 }
+
+export default LightSource;

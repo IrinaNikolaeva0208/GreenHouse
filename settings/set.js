@@ -41,4 +41,4 @@ window.addEventListener("unload", () => {
     }
 });
 
-module.exports = user_plan;
+export default user_plan;

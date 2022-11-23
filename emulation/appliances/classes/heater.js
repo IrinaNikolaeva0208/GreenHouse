@@ -1,3 +1,5 @@
+import Appliance from "./appliance.js";
+
 class Heater extends Appliance {
     #essentialTemperature;
 
@@ -10,3 +12,5 @@ class Heater extends Appliance {
         return this.#essentialTemperature;
     }
 }
+
+export default Heater;
