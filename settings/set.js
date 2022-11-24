@@ -30,15 +30,15 @@ for (let item of plan_dropdown_items)
         }
     });
 
-window.addEventListener("unload", () => {
+document.querySelector(".btn-start").addEventListener("click", () => {
+    localStorage.clear();
     if (!plan_block.classList.contains("hidden")) {
-        let parametersValues = document.querySelectorAll(".plan-item+input");
+        let parametersValues = document.querySelectorAll(".plan-item-input");
         let i = 0;
         for (let parameter in user_plan) {
-            user_plan[parameter] = parametersValues[i];
+            user_plan[parameter] = parametersValues[i].value;
             i++;
         }
+        localStorage.setItem("userPlan", JSON.stringify(user_plan));
     }
 });
-
-export default user_plan;
