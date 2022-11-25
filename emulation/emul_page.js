@@ -41,17 +41,73 @@ function growPlants() {
     }
 }
 
+function isInRange(rangeOfNumbers, x, y) {
+    return rangeOfNumbers.includes(x) && rangeOfNumbers.includes(y);
+}
+
+function calculateParameterGrade(plant, applianceArray) {
+    const distancesToPlantX = applianceArray.map(
+        (app) => app.getAppliancePositionX() - plant.getPlantPositionX()
+    );
+    const distancesToPlantY = applianceArray.map(
+        (app) => app.getAppliancePositionY() - plant.getPlantPositionY()
+    );
+
+    let parameterGrade = 0;
+    for (
+        let distanceNumber = 0;
+        distanceNumber < distancesToPlantX.length;
+        distanceNumber++
+    ) {
+        if (
+            parameterGrade < 5 &&
+            isInRange(
+                [0, 1],
+                distancesToPlantX[distanceNumber],
+                distancesToPlantY[distanceNumber]
+            )
+        )
+            parameterGrade = 5;
+        else if (
+            parameterGrade < 3 &&
+            isInRange(
+                [2, 1, 0, -1],
+                distancesToPlantX[distanceNumber],
+                distancesToPlantY[distanceNumber]
+            )
+        )
+            parameterGrade = 3;
+        else if (
+            parameterGrade < 1.5 &&
+            isInRange(
+                [3, 2, 1, 0, -1, -2],
+                distancesToPlantX[distanceNumber],
+                distancesToPlantY[distanceNumber]
+            )
+        )
+            parameterGrade = 1.5;
+    }
+    return parameterGrade;
+}
+
 function checkConditions() {
     for (let plantNumber = 0; plantNumber < plants.length; plantNumber++) {
         let totalGrade = 0;
-        //potom dopishy
+        for (let appliance in appliances) {
+            totalGrade += calculateParameterGrade(
+                plants[plantNumber],
+                appliances[appliance]
+            );
+            if (plantNumber == 28) console.log(appliance);
+        }
         plants[plantNumber].setGrowthRate(totalGrade);
+        if (plantNumber == 1) console.log(totalGrade);
     }
 }
 
 function showParameterValuesOnSensors() {
     for (let sensor in sensors) {
-        sensor.calculateParameterValue;
+        sensors[sensor].calculateParameterValue();
         let parametersValue = sensor.getParameterValue();
         //pokazat' znachenie na sensore
     }
@@ -62,6 +118,8 @@ function emulateGreenhouse() {
     showParameterValuesOnSensors();
     growPlants();
     //smenit' kolichesvo proydenogo vremeni
+    console.log(1);
 }
 
-setInterval(emulateGreenhouse, 1000);
+//setInterval(emulateGreenhouse, 1000);
+emulateGreenhouse();

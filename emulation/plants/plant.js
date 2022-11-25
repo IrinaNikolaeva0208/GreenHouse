@@ -15,6 +15,14 @@ class Plant {
     getGrowthRate() {
         return this.#growthRate;
     }
+
+    getPlantPositionX() {
+        return this.#plantPositionX;
+    }
+
+    getPlantPositionY() {
+        return this.#plantPositionY;
+    }
 }
 
 export default Plant;
