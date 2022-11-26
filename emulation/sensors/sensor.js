@@ -1,3 +1,5 @@
+import getProperParameterValue from "../emulation_modules/getProperParameterValue.js";
+
 class Sensor {
     #parameter;
     #parameterValue;
@@ -25,94 +27,43 @@ class Sensor {
                 parameterAppliance.getAppliancePositionX() -
                     this.#sensorPositionX
             );
-            let distancetoApplianceY = Math.abs(
+            let distanceToApplianceY = Math.abs(
                 parameterAppliance.getAppliancePositionY() -
                     this.#sensorPositionY
             );
+
             let maxDistanceToAppliance =
-                distanceToApplianceX > distancetoApplianceY
+                distanceToApplianceX > distanceToApplianceY
                     ? distanceToApplianceX
-                    : distancetoApplianceY;
+                    : distanceToApplianceY;
             if (maxDistanceToAppliance < distanceToClosestAppliance)
                 distanceToClosestAppliance = maxDistanceToAppliance;
         }
 
         switch (distanceToClosestAppliance) {
             case 1:
-                if (
-                    parameterGreenhouseCondition >
-                    parameterAppliances[0]["getEssential" + this.#parameter]()
-                )
-                    this.#parameterValue = +(
-                        (parameterGreenhouseCondition -
-                            parameterAppliances[0][
-                                "getEssential" + this.#parameter
-                            ]()) *
-                            0.8 +
-                        parameterAppliances[0][
-                            "getEssential" + this.#parameter
-                        ]()
-                    ).toFixed(1);
-                else
-                    this.#parameterValue = +(
-                        (parameterAppliances[0][
-                            "getEssential" + this.#parameter
-                        ]() -
-                            parameterGreenhouseCondition) *
-                            0.8 +
-                        parameterGreenhouseCondition
-                    ).toFixed(1);
+                this.#parameterValue = getProperParameterValue(
+                    parameterGreenhouseCondition,
+                    this.#parameter,
+                    parameterAppliances,
+                    0.8
+                );
                 break;
             case 2:
-                if (
-                    parameterGreenhouseCondition >
-                    parameterAppliances[0]["getEssential" + this.#parameter]()
-                )
-                    this.#parameterValue = +(
-                        (parameterGreenhouseCondition -
-                            parameterAppliances[0][
-                                "getEssential" + this.#parameter
-                            ]()) *
-                            0.5 +
-                        parameterAppliances[0][
-                            "getEssential" + this.#parameter
-                        ]()
-                    ).toFixed(1);
-                else
-                    this.#parameterValue = +(
-                        (parameterAppliances[0][
-                            "getEssential" + this.#parameter
-                        ]() -
-                            parameterGreenhouseCondition) *
-                            0.5 +
-                        parameterGreenhouseCondition
-                    ).toFixed(1);
+                this.#parameterValue = getProperParameterValue(
+                    parameterGreenhouseCondition,
+                    this.#parameter,
+                    parameterAppliances,
+                    0.5
+                );
                 break;
             case 3:
-                if (
-                    parameterGreenhouseCondition >
-                    parameterAppliances[0]["getEssential" + this.#parameter]()
-                )
-                    this.#parameterValue = +(
-                        (parameterGreenhouseCondition -
-                            parameterAppliances[0][
-                                "getEssential" + this.#parameter
-                            ]()) *
-                            0.2 +
-                        parameterAppliances[0][
-                            "getEssential" + this.#parameter
-                        ]()
-                    ).toFixed(1);
-                else
-                    this.#parameterValue = +(
-                        (parameterAppliances[0][
-                            "getEssential" + this.#parameter
-                        ]() -
-                            parameterGreenhouseCondition) *
-                            0.2 +
-                        parameterGreenhouseCondition
-                    ).toFixed(1);
-                break;
+                this.#parameterValue = getProperParameterValue(
+                    parameterGreenhouseCondition,
+                    this.#parameter,
+                    parameterAppliances,
+                    0.2
+                );
             default:
                 this.#parameterValue = parameterGreenhouseCondition;
         }

@@ -55,23 +55,24 @@ function showParameterValuesOnSensors() {
             case "humiditySensor":
                 sensors[sensor].calculateParameterValue(
                     appliances.humidlifiers,
-                    greenhouseConditions.humidity
+                    greenhouseConditions.Humidity
                 );
                 break;
             case "aciditySensor":
                 sensors[sensor].calculateParameterValue(
                     appliances.fertilizerDispensers,
-                    greenhouseConditions.acidity
+                    greenhouseConditions.Acidity
                 );
                 break;
             case "temperatureSensor":
                 sensors[sensor].calculateParameterValue(
                     appliances.heaters,
-                    greenhouseConditions.temperature
+                    greenhouseConditions.Temperature
                 );
                 break;
         }
         let parametersValue = sensors[sensor].getParameterValue();
+        console.log(parametersValue);
         //pokazat' znachenie na sensore
     }
 }

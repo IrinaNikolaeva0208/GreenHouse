@@ -1,3 +1,5 @@
+import getProperParameterValue from "./getProperParameterValue.js";
+
 function isInRange(rangeOfNumbers, x, y) {
     return rangeOfNumbers.includes(x) && rangeOfNumbers.includes(y);
 }
@@ -30,23 +32,12 @@ export default function calculateParameterGrade(
                 distancesToPlantY[distanceNumber]
             )
         ) {
-            if (
-                greenhouseConditions[parameter] >
-                applianceArray[0]["getEssential" + parameter]()
-            )
-                parameterCoefficient = +(
-                    (greenhouseConditions[parameter] -
-                        applianceArray[0]["getEssential" + parameter]()) *
-                        0.8 +
-                    applianceArray[0]["getEssential" + parameter]()
-                ).toFixed(1);
-            else
-                parameterCoefficient = +(
-                    (applianceArray[0]["getEssential" + parameter]() -
-                        greenhouseConditions[parameter]) *
-                        0.8 +
-                    greenhouseConditions[parameter]
-                ).toFixed(1);
+            parameterCoefficient = getProperParameterValue(
+                greenhouseConditions[parameter],
+                parameter,
+                applianceArray,
+                0.8
+            );
             parameterCoefficient /=
                 applianceArray[0]["getEssential" + parameter]();
             parameterGrade = 3;
@@ -58,23 +49,12 @@ export default function calculateParameterGrade(
                 distancesToPlantY[distanceNumber]
             )
         ) {
-            if (
-                greenhouseConditions[parameter] >
-                applianceArray[0]["getEssential" + parameter]()
-            )
-                parameterCoefficient = +(
-                    (greenhouseConditions[parameter] -
-                        applianceArray[0]["getEssential" + parameter]()) *
-                        0.5 +
-                    applianceArray[0]["getEssential" + parameter]()
-                ).toFixed(1);
-            else
-                parameterCoefficient = +(
-                    (applianceArray[0]["getEssential" + parameter]() -
-                        greenhouseConditions[parameter]) *
-                        0.5 +
-                    greenhouseConditions[parameter]
-                ).toFixed(1);
+            parameterCoefficient = getProperParameterValue(
+                greenhouseConditions[parameter],
+                parameter,
+                applianceArray,
+                0.5
+            );
             parameterCoefficient /=
                 applianceArray[0]["getEssential" + parameter]();
             parameterGrade = 2;
@@ -86,23 +66,12 @@ export default function calculateParameterGrade(
                 distancesToPlantY[distanceNumber]
             )
         ) {
-            if (
-                greenhouseConditions[parameter] >
-                applianceArray[0]["getEssential" + parameter]()
-            )
-                parameterCoefficient = +(
-                    (greenhouseConditions[parameter] -
-                        applianceArray[0]["getEssential" + parameter]()) *
-                        0.8 +
-                    applianceArray[0]["getEssential" + parameter]()
-                ).toFixed(1);
-            else
-                parameterCoefficient = +(
-                    (applianceArray[0]["getEssential" + parameter]() -
-                        greenhouseConditions[parameter]) *
-                        0.8 +
-                    greenhouseConditions[parameter]
-                ).toFixed(1);
+            parameterCoefficient = getProperParameterValue(
+                greenhouseConditions[parameter],
+                parameter,
+                applianceArray,
+                0.2
+            );
             parameterCoefficient /=
                 applianceArray[0]["getEssential" + parameter]();
             parameterGrade = 1;
