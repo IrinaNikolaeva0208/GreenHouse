@@ -80,22 +80,26 @@ p{
     margin: 20px auto 0;
 }
 
-.container {
-    height: 92%;
-    flex-direction: column;
-}
-
-.greenhouse-block {
-    width: 96%;
-    height: 95%;
-    border: solid 10px rgb(41, 41, 41);
-    background: url(../assets/images/uIQK9dyxHcXCiZmrj85JupMNnaH0y3z2o_AG8kiXwKUIgcR28wi1OFwtSlYmC0j56KO6fpIRg2skjxV5NU8ghnuV.jpg) no-repeat;
-    background-size: cover;
+.container{
+    margin: 60px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #262626;
+    text-align: center;
 }
 
 .row {
-    height: 90%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: 100px;
+}
+
+.col{
+    border: 1px solid #262626;
+    overflow: hidden;
+}
+
+.icon{
+   max-width: 80px;
+   padding-top: 10px;
+   padding-bottom: 10px;
 }
