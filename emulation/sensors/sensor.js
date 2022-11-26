@@ -18,7 +18,7 @@ class Sensor {
         return this.#parameterValue;
     }
 
-    calculateParameterValue(parameterAppliances) {
+    calculateParameterValue(parameterAppliances, parameterGreenhouseCondition) {
         let distanceToClosestAppliance = 20;
         for (let parameterAppliance of parameterAppliances) {
             let distanceToApplianceX = Math.abs(
@@ -36,10 +36,86 @@ class Sensor {
             if (maxDistanceToAppliance < distanceToClosestAppliance)
                 distanceToClosestAppliance = maxDistanceToAppliance;
         }
-        this.#parameterValue =
-            maxDistanceToAppliance < 4
-                ? parameterAppliances[0]["getEssential" + this.#parameter]
-                : 0;
+
+        switch (distanceToClosestAppliance) {
+            case 1:
+                if (
+                    parameterGreenhouseCondition >
+                    parameterAppliances[0]["getEssential" + this.#parameter]()
+                )
+                    this.#parameterValue = +(
+                        (parameterGreenhouseCondition -
+                            parameterAppliances[0][
+                                "getEssential" + this.#parameter
+                            ]()) *
+                            0.8 +
+                        parameterAppliances[0][
+                            "getEssential" + this.#parameter
+                        ]()
+                    ).toFixed(1);
+                else
+                    this.#parameterValue = +(
+                        (parameterAppliances[0][
+                            "getEssential" + this.#parameter
+                        ]() -
+                            parameterGreenhouseCondition) *
+                            0.8 +
+                        parameterGreenhouseCondition
+                    ).toFixed(1);
+                break;
+            case 2:
+                if (
+                    parameterGreenhouseCondition >
+                    parameterAppliances[0]["getEssential" + this.#parameter]()
+                )
+                    this.#parameterValue = +(
+                        (parameterGreenhouseCondition -
+                            parameterAppliances[0][
+                                "getEssential" + this.#parameter
+                            ]()) *
+                            0.5 +
+                        parameterAppliances[0][
+                            "getEssential" + this.#parameter
+                        ]()
+                    ).toFixed(1);
+                else
+                    this.#parameterValue = +(
+                        (parameterAppliances[0][
+                            "getEssential" + this.#parameter
+                        ]() -
+                            parameterGreenhouseCondition) *
+                            0.5 +
+                        parameterGreenhouseCondition
+                    ).toFixed(1);
+                break;
+            case 3:
+                if (
+                    parameterGreenhouseCondition >
+                    parameterAppliances[0]["getEssential" + this.#parameter]()
+                )
+                    this.#parameterValue = +(
+                        (parameterGreenhouseCondition -
+                            parameterAppliances[0][
+                                "getEssential" + this.#parameter
+                            ]()) *
+                            0.2 +
+                        parameterAppliances[0][
+                            "getEssential" + this.#parameter
+                        ]()
+                    ).toFixed(1);
+                else
+                    this.#parameterValue = +(
+                        (parameterAppliances[0][
+                            "getEssential" + this.#parameter
+                        ]() -
+                            parameterGreenhouseCondition) *
+                            0.2 +
+                        parameterGreenhouseCondition
+                    ).toFixed(1);
+                break;
+            default:
+                this.#parameterValue = parameterGreenhouseCondition;
+        }
     }
 
     changePosition(direction) {

@@ -9,7 +9,7 @@ class Plant {
     }
 
     setGrowthRate(totalGrade) {
-        this.#growthRate = 100 + 20 * totalGrade;
+        this.#growthRate = (totalGrade - 3) * 20;
     }
 
     getGrowthRate() {

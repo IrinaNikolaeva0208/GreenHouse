@@ -1,11 +1,15 @@
 import Appliance from "./appliance.js";
 
 class LightSource extends Appliance {
-    #LightLevel;
+    #essentialLightLevel;
 
     constructor(lightLevel, appliancePositioX, appliancePositionY) {
         super(appliancePositioX, appliancePositionY);
-        this.#LightLevel = lightLevel;
+        this.#essentialLightLevel = lightLevel;
+    }
+
+    getEssentialLightLevel() {
+        return this.#essentialLightLevel;
     }
 }
 
