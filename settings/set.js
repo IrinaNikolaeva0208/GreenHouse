@@ -6,6 +6,9 @@ let plan_dropdown_btn = document.querySelector(".plan-dropdown-btn");
 let plant_dropdown_items = document.querySelectorAll(".plant-dropdown-item");
 let plant_dropdown_btn = document.querySelector(".plant-dropdown-btn");
 
+let date_input = document.querySelector(".date-input");
+let time_input = document.querySelector(".time-input");
+
 let user_plan = {
     humidity: null,
     temperature: null,
@@ -32,6 +35,9 @@ for (let item of plan_dropdown_items)
 
 document.querySelector(".btn-start").addEventListener("click", () => {
     localStorage.clear();
+    localStorage.setItem("culture", plant_dropdown_btn.textContent);
+    localStorage.setItem("startDate", date_input.value);
+    localStorage.setItem("startTime", time_input.value);
     if (!plan_block.classList.contains("hidden")) {
         let parametersValues = document.querySelectorAll(".plan-item-input");
         let i = 0;

@@ -8,6 +8,7 @@ import sensors from "./sensors/index.js";
 import plants from "./plants/index.js";
 import appliances from "./appliances/index.js";
 import checkConditions from "./emulation_modules/checkConditions.js";
+import changeEmulationTime from "./emulation_modules/changeEmulationTime.js";
 
 let greenhouseConditions = {
     Humidity: 60,
@@ -15,10 +16,6 @@ let greenhouseConditions = {
     Acidity: 7,
     LightLevel: 300,
 };
-
-// console.log(sensors);
-// console.log(plants);
-// console.log(appliances);
 
 //Nujno sozdat' setku/flexbox v teplitse 10x5 pod rasteniya i v kazdom bloke sdelat' fonom ochen' malen'kuyu ikonky rasteniya
 //Rasteniya hranyatsya v massive PLANTS
@@ -38,12 +35,10 @@ let greenhouseConditions = {
 
 //sozdat' 4 knopki vkl/vykl dlya kazdogo pribora
 
-//Nuzno sozdat' blok s nazvaniem rasteniya, datoy starta, i kolichestvom proshedsih sutok i chasov (kak v metode)
-
 function growPlants() {
     for (let plantNumber = 0; plantNumber < plants.length; plantNumber++) {
         plants[plantNumber].getGrowthRate();
-        //growthRate - skol'ko procentov sostavlyaet sleduyuschiy razmer rastenia ot tekuschego (min 101, max 120)
+        //growthRate - skol'ko procentov sostavlyaet sleduyuschiy razmer rastenia ot tekuschego
         //esli ne ochen' udobnoe znachenie - mogu potom perepisat'
         //zdes' nuzno animirovat' rost (ili prosto yvelichivat' bloki), uchityvaya growthRate
     }
@@ -72,7 +67,6 @@ function showParameterValuesOnSensors() {
                 break;
         }
         let parametersValue = sensors[sensor].getParameterValue();
-        console.log(parametersValue);
         //pokazat' znachenie na sensore
     }
 }
@@ -81,7 +75,7 @@ function emulateGreenhouse() {
     checkConditions(plants, appliances, greenhouseConditions);
     showParameterValuesOnSensors();
     growPlants();
-    //smenit' kolichesvo proydenogo vremeni
+    changeEmulationTime(emulateGreenhouse);
 }
 
-setInterval(emulateGreenhouse, 1000);
+emulateGreenhouse();
