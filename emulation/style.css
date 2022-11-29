@@ -96,10 +96,14 @@ p{
 .col{
     border: 1px solid #262626;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .icon{
-   max-width: 80px;
+    max-width: 80px;
+   visibility: hidden;
    padding-top: 10px;
    padding-bottom: 10px;
 }

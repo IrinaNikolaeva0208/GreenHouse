@@ -35,12 +35,46 @@ let greenhouseConditions = {
 
 //sozdat' 4 knopki vkl/vykl dlya kazdogo pribora
 
-function growPlants() {
-    for (let plantNumber = 0; plantNumber < plants.length; plantNumber++) {
-        plants[plantNumber].getGrowthRate();
-        //growthRate - skol'ko procentov sostavlyaet sleduyuschiy razmer rastenia ot tekuschego
-        //esli ne ochen' udobnoe znachenie - mogu potom perepisat'
-        //zdes' nuzno animirovat' rost (ili prosto yvelichivat' bloki), uchityvaya growthRate
+const plantsBlocksArray = [];
+let tempPLantArray = [];
+for (let plant of document.querySelectorAll(".row img")) {
+    tempPLantArray.push(plant);
+    if (tempPLantArray.length == 10) {
+        plantsBlocksArray.unshift(...tempPLantArray);
+        tempPLantArray = [];
+    }
+}
+plantsBlocksArray.forEach((plant) => plant.setAttribute("width", "5px"));
+const col_width = document.querySelector(".col").offsetWidth;
+
+growPlants.growingDay = 6;
+function growPlants(currentDay) {
+    if (currentDay == 7)
+        plantsBlocksArray.forEach((plantBlock) =>
+            plantBlock.setAttribute("style", "visibility:visible")
+        );
+    if (currentDay >= 7 && currentDay != growPlants.growingDay) {
+        growPlants.growingDay = currentDay;
+        for (let plantNumber = 0; plantNumber < plants.length; plantNumber++) {
+            let plantGrowthRate = plants[plantNumber].getGrowthRate();
+            let growthPercent = +(
+                (plantsBlocksArray[plantNumber].offsetWidth / col_width) * 100 +
+                plantGrowthRate
+            ).toFixed(2);
+
+            plantsBlocksArray[plantNumber].setAttribute(
+                "width",
+                `${
+                    +plantsBlocksArray[plantNumber]
+                        .getAttribute("width")
+                        .slice(0, -2) + plantGrowthRate
+                }px`
+            );
+            console.log(
+                plantsBlocksArray[plantNumber].offsetWidth + plantGrowthRate,
+                plantNumber
+            );
+        }
     }
 }
 
@@ -72,10 +106,10 @@ function showParameterValuesOnSensors() {
 }
 
 function emulateGreenhouse() {
+    const currentDay = changeEmulationTime(emulateGreenhouse);
     checkConditions(plants, appliances, greenhouseConditions);
     showParameterValuesOnSensors();
-    growPlants();
-    changeEmulationTime(emulateGreenhouse);
+    growPlants(currentDay);
 }
 
 emulateGreenhouse();

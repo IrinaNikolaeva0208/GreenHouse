@@ -23,4 +23,5 @@ export default function changeEmulationTime(emulationFunc) {
     else
         timer_block.textContent =
             timeBlockCommonText + `${numberOfDay} days passed (Done!)`;
+    return numberOfDay;
 }
