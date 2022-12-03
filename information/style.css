@@ -1,13 +1,23 @@
-html {
-    height: 100%;
+body{
+    background-image: url("../assets/images/bc_start_page.jpeg");
+    background-size: 100%;
+    background-attachment: fixed;
+    font-family: Times, "Times New Roman", Georgia, serif;
 }
 
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background: #ffffff;
+.container {
+    margin-top: 15%;
+}
+
+.row {
+    margin-bottom: 15px;
+}
+
+.text {
     font-family: Times, "Times New Roman", Georgia, serif;
+    text-transform: uppercase;
+    font-size: 38pt;
+    text-align: center;
 }
 
 nav {
@@ -15,7 +25,7 @@ nav {
 }
 
 .bg-color {
-    background-color: rgba(252, 81, 133, 0.3);
+    background-color: #fbbccf;
 }
 
 .toggle {
@@ -67,7 +77,7 @@ ul li a {
 }
 
 ul li a:hover {
-    background: rgba(252, 81, 133, 0.3);
+    background: rgba(248, 101, 145, 0.3);
     text-decoration: none;
     color: #262626;
 }
@@ -84,65 +94,6 @@ ul li a:hover {
 p {
     margin: 0;
     padding-left: 5px;
-}
-
-.container {
-    margin: 40px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid #262626;
-    text-align: center;
-}
-
-.row {
-    height: 100px;
-}
-
-.col {
-    border: 1px solid #262626;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.plant_icon {
-    z-index: 0;
-    max-width: 80px;
-    visibility: hidden;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.time {
-    display: flex;
-    margin-top: 40px;
-    background-color: rgba(252, 81, 133, 0.3);
-    min-height: 60px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(252, 81, 133, 0.5);
-    border-radius: 50px;
-    font-size: 24pt;
-}
-
-.btn_container {
-    margin: 20px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-.btn_col {
-    flex: 1 0 0%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
 }
 
 .btn-secondary {
@@ -168,4 +119,14 @@ p {
 .btn-start:active {
     background-color: #da285d59 !important;
     border: #FC5185;
+}
+
+a {
+    text-decoration: none;
+    color: #262626;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
 }
