@@ -1,4 +1,5 @@
 import Appliance from "./appliance.js";
+import greenhouseConditions from "../../emulation_modules/greenhouseConditions.js";
 
 class LightSource extends Appliance {
     #essentialLightLevel;
@@ -9,7 +10,9 @@ class LightSource extends Appliance {
     }
 
     getEssentialLightLevel() {
-        return this.#essentialLightLevel;
+        return this._isSwitchedOn
+            ? this.#essentialLightLevel
+            : greenhouseConditions.LightLevel;
     }
 }
 

@@ -1,4 +1,5 @@
 import Appliance from "./appliance.js";
+import greenhouseConditions from "../../emulation_modules/greenhouseConditions.js";
 
 class Heater extends Appliance {
     #essentialTemperature;
@@ -9,7 +10,9 @@ class Heater extends Appliance {
     }
 
     getEssentialTemperature() {
-        return this.#essentialTemperature;
+        return this._isSwitchedOn
+            ? this.#essentialTemperature
+            : greenhouseConditions.Temperature;
     }
 }
 

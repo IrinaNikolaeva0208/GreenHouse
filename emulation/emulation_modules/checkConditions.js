@@ -1,10 +1,9 @@
 import calculateParameterGrade from "./calculateParameterGrade.js";
+import greenhouseConditions from "./greenhouseConditions.js";
+import plants from "../plants/index.js";
+import appliances from "../appliances/index.js";
 
-export default function checkConditions(
-    plants,
-    appliances,
-    greenhouseConditions
-) {
+export default function checkConditions() {
     for (let plantNumber = 0; plantNumber < plants.length; plantNumber++) {
         let totalGrade = 0;
         for (let appliance in appliances) {
@@ -16,7 +15,6 @@ export default function checkConditions(
             totalGrade += calculateParameterGrade(
                 plants[plantNumber],
                 appliances[appliance],
-                greenhouseConditions,
                 parameter
             );
         }

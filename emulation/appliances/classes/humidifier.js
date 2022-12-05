@@ -1,4 +1,5 @@
 import Appliance from "./appliance.js";
+import greenhouseConditions from "../../emulation_modules/greenhouseConditions.js";
 
 class Humidlifier extends Appliance {
     #essentialHumidity;
@@ -9,7 +10,9 @@ class Humidlifier extends Appliance {
     }
 
     getEssentialHumidity() {
-        return this.#essentialHumidity;
+        return this._isSwitchedOn
+            ? this.#essentialHumidity
+            : greenhouseConditions.Humidity;
     }
 }
 

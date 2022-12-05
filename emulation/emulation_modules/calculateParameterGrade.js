@@ -1,4 +1,5 @@
 import getProperParameterValue from "./getProperParameterValue.js";
+import greenhouseConditions from "./greenhouseConditions.js";
 
 function isInRange(rangeOfNumbers, x, y) {
     return rangeOfNumbers.includes(x) && rangeOfNumbers.includes(y);
@@ -7,7 +8,6 @@ function isInRange(rangeOfNumbers, x, y) {
 export default function calculateParameterGrade(
     plant,
     applianceArray,
-    greenhouseConditions,
     parameter
 ) {
     const distancesToPlantX = applianceArray.map(

@@ -5,18 +5,11 @@ $(document).ready(function () {
 });
 
 import sensors from "./sensors/index.js";
-import plants from "./plants/index.js";
 import appliances from "./appliances/index.js";
 import checkConditions from "./emulation_modules/checkConditions.js";
 import changeEmulationTime from "./emulation_modules/changeEmulationTime.js";
 import growPlants from "./emulation_modules/growPlants.js";
-
-let greenhouseConditions = {
-    Humidity: 60,
-    Temperature: 10,
-    Acidity: 7,
-    LightLevel: 300,
-};
+import greenhouseConditions from "./emulation_modules/greenhouseConditions.js";
 
 //Nujno sozdat' bloki na kazdiy pribor, vse pribory hranyatsya v ob'ekte APPLIANCES v formate key(nazvanie): value(massiv etih priborov)
 //ne prinadlejat setke/flexu, (position relative ?)
@@ -58,7 +51,7 @@ function showParameterValuesOnSensors() {
 
 function emulateGreenhouse() {
     const currentDay = changeEmulationTime(emulateGreenhouse);
-    checkConditions(plants, appliances, greenhouseConditions);
+    checkConditions();
     showParameterValuesOnSensors();
     growPlants(currentDay);
 }
