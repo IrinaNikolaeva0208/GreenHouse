@@ -13,7 +13,7 @@ let user_plan = {
     humidity: null,
     temperature: null,
     acidity: null,
-    light: null,
+    lightLevel: null,
 };
 
 for (let item of plant_dropdown_items)

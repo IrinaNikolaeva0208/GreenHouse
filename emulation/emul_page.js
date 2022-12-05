@@ -56,24 +56,17 @@ function growPlants(currentDay) {
     if (currentDay >= 7 && currentDay != growPlants.growingDay) {
         growPlants.growingDay = currentDay;
         for (let plantNumber = 0; plantNumber < plants.length; plantNumber++) {
-            let plantGrowthRate = plants[plantNumber].getGrowthRate();
-            let growthPercent = +(
-                (plantsBlocksArray[plantNumber].offsetWidth / col_width) * 100 +
-                plantGrowthRate
-            ).toFixed(2);
+            const plantBlockWidth = +plantsBlocksArray[plantNumber]
+                .getAttribute("width")
+                .slice(0, -2);
+            if (plantBlockWidth < 81) {
+                let plantGrowthRate = plants[plantNumber].getGrowthRate();
 
-            plantsBlocksArray[plantNumber].setAttribute(
-                "width",
-                `${
-                    +plantsBlocksArray[plantNumber]
-                        .getAttribute("width")
-                        .slice(0, -2) + plantGrowthRate
-                }px`
-            );
-            console.log(
-                plantsBlocksArray[plantNumber].offsetWidth + plantGrowthRate,
-                plantNumber
-            );
+                plantsBlocksArray[plantNumber].setAttribute(
+                    "width",
+                    `${plantBlockWidth + plantGrowthRate}px`
+                );
+            }
         }
     }
 }
