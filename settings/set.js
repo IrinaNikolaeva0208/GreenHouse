@@ -2,6 +2,7 @@ let set_block = document.querySelector(".settings-block");
 let plan_block = document.querySelector(".plan-block");
 let plan_dropdown_items = document.querySelectorAll(".plan-dropdown-item");
 let plan_dropdown_btn = document.querySelector(".plan-dropdown-btn");
+let plant_dropdown = document.querySelector(".plant-dropdown");
 
 let plant_dropdown_items = document.querySelectorAll(".plant-dropdown-item");
 let plant_dropdown_btn = document.querySelector(".plant-dropdown-btn");
@@ -34,7 +35,6 @@ for (let item of plan_dropdown_items)
     });
 
 document.querySelector(".btn-start").addEventListener("click", () => {
-    localStorage.clear();
     localStorage.setItem("culture", plant_dropdown_btn.textContent);
     localStorage.setItem("startDate", date_input.value);
     localStorage.setItem("startTime", time_input.value);

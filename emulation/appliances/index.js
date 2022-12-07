@@ -1,4 +1,4 @@
-import essentialPlan from "../../plan/index.js";
+import essentialPlan from "../../plan/plan_db/index.js";
 import Heater from "./classes/heater.js";
 import Humidlifier from "./classes/humidifier.js";
 import LightSource from "./classes/light_source.js";
