@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node plan/plan_db/server"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,12 @@
   },
   "homepage": "https://github.com/IrinaNikolaeva0208/GreenHouse#readme",
   "dependencies": {
-    "mongoose": "^6.8.0"
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.0",
+    "open": "^8.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
