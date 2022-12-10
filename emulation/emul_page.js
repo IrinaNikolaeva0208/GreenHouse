@@ -54,6 +54,7 @@ function emulateGreenhouse() {
     checkConditions();
     showParameterValuesOnSensors();
     growPlants(currentDay);
+    console.log(JSON.parse(localStorage.getItem("Plan")));
 }
 
 emulateGreenhouse();

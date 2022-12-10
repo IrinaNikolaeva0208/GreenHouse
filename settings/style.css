@@ -73,6 +73,25 @@ input[type="time"]{
     margin-left: 10px;
 }
 
+.plant-dropdown .dropdown-menu {
+    height: 145px;
+    overflow-y: scroll;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+    width: 8px;          
+  }
+
+  .dropdown-menu::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 3px;   
+  }
+  .dropdown-menu::-webkit-scrollbar-thumb { 
+    border-radius: 6px;   
+    background-color: rgb(222, 222, 222); 
+    border: 3px solid white;
+  }
+
 .plan-block {
     margin-top: 10px;
     display: flex;

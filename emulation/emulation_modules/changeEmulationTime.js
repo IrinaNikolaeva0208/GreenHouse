@@ -9,7 +9,6 @@ const timeBlockCommonText = `${localStorage.getItem(
     .split("-")
     .reverse()
     .join(".")}; `;
-localStorage.clear();
 
 export default function changeEmulationTime(emulationFunc) {
     if (numberOfHour > 23) {

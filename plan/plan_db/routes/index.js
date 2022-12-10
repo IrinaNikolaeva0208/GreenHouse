@@ -1,8 +1,7 @@
-export default function (app, db) {
-    app.put("/plan_db:culture", (req, res) => {
+export default async function (app, db) {
+    await app.put("/plan_db:culture", (req, res) => {
         const cultureToUpdate = { culture: req.body.culture };
         const newCulturePlan = {
-            culture: req.body.culture,
             humidity: req.body.humidity,
             temperature: req.body.temperature,
             acidity: req.body.acidity,
@@ -16,7 +15,7 @@ export default function (app, db) {
             }
         });
     });
-    app.delete("/plan_db:culture", (req, res) => {
+    await app.delete("/plan_db:culture", (req, res) => {
         const cultureToDelete = { culture: req.body.culture };
         db.deleteOne(cultureToDelete, (err) => {
             if (err) {
@@ -26,7 +25,7 @@ export default function (app, db) {
             }
         });
     });
-    app.get("/plan_db", (req, res) => {
+    await app.get("/plan_db", (req, res) => {
         db.find({}, (err, data) => {
             if (err) {
                 res.send({ error: "An error has occurred" });
@@ -35,7 +34,7 @@ export default function (app, db) {
             }
         });
     });
-    app.post("/plan_db", (req, res) => {
+    await app.post("/plan_db", (req, res) => {
         const culturePlan = {
             culture: req.body.culture,
             humidity: req.body.humidity,
