@@ -9,10 +9,14 @@ class LightSource extends Appliance {
         this.#essentialLightLevel = lightLevel;
     }
 
-    getEssentialLightLevel() {
+    getCurrentLightLevel() {
         return this._isSwitchedOn
             ? this.#essentialLightLevel
             : greenhouseConditions.LightLevel;
+    }
+
+    getEssentialLightLevel() {
+        return this.#essentialLightLevel;
     }
 }
 

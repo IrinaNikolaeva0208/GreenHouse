@@ -20,8 +20,12 @@ class Appliance {
         this._isSwitchedOn = true;
     }
 
-    switchOf() {
+    switchOff() {
         this._isSwitchedOn = false;
+    }
+
+    getState() {
+        return this._isSwitchedOn;
     }
 
     changePosition(direction) {

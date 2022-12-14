@@ -9,10 +9,14 @@ class FertilizerDispenser extends Appliance {
         this.#essentialAcidity = acidity;
     }
 
-    getEssentialAcidity() {
+    getCurrentAcidity() {
         return this._isSwitchedOn
             ? this.#essentialAcidity
             : greenhouseConditions.Acidity;
+    }
+
+    getEssentialAcidity() {
+        return this.#essentialAcidity;
     }
 }
 

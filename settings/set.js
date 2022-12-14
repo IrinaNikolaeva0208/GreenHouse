@@ -3,7 +3,7 @@ let plan_block = document.querySelector(".plan-block");
 let plan_dropdown_items = document.querySelectorAll(".plan-dropdown-item");
 let plan_dropdown_btn = document.querySelector(".plan-dropdown-btn");
 let plant_dropdown = document.querySelector(".plant-dropdown .dropdown-menu");
-
+let test_btn = document.querySelector(".system-test-btn");
 let plant_dropdown_btn = document.querySelector(".plant-dropdown-btn");
 
 let date_input = document.querySelector(".date-input");
@@ -40,11 +40,24 @@ for (let item of plan_dropdown_items)
         }
     });
 
+test_btn.addEventListener("click", () => {
+    if (!sessionStorage.getItem("Plan"))
+        alert("The system hasn't worked yet. Please, start emulation!");
+    else {
+        let alertStr = "Current parameters:";
+        const previousPlan = JSON.parse(sessionStorage.getItem("Plan"));
+        delete previousPlan.__v;
+        for (let parameter in previousPlan)
+            alertStr += `\n${parameter}: ${previousPlan[parameter]}`;
+        alert(alertStr);
+    }
+});
+
 document.querySelector(".btn-start").addEventListener("click", () => {
-    localStorage.clear();
-    localStorage.setItem("culture", plant_dropdown_btn.textContent);
-    localStorage.setItem("startDate", date_input.value);
-    localStorage.setItem("startTime", time_input.value);
+    sessionStorage.clear();
+    sessionStorage.setItem("culture", plant_dropdown_btn.textContent);
+    sessionStorage.setItem("startDate", date_input.value);
+    sessionStorage.setItem("startTime", time_input.value);
     let plan = {
         humidity: null,
         acidity: null,
@@ -58,13 +71,13 @@ document.querySelector(".btn-start").addEventListener("click", () => {
             plan[parameter] = parametersValues[i].value;
             i++;
         }
-        localStorage.setItem("Plan", JSON.stringify(plan));
+        sessionStorage.setItem("Plan", JSON.stringify(plan));
     } else {
         plan = planList.find(
-            (plan) => plan.culture == localStorage.getItem("culture")
+            (plan) => plan.culture == sessionStorage.getItem("culture")
         );
         delete plan._id;
         delete plan.culture;
-        localStorage.setItem("Plan", JSON.stringify(plan));
+        sessionStorage.setItem("Plan", JSON.stringify(plan));
     }
 });

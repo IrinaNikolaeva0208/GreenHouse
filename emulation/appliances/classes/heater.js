@@ -9,10 +9,14 @@ class Heater extends Appliance {
         this.#essentialTemperature = temperature;
     }
 
-    getEssentialTemperature() {
+    getCurrentTemperature() {
         return this._isSwitchedOn
             ? this.#essentialTemperature
             : greenhouseConditions.Temperature;
+    }
+
+    getEssentialTemperature() {
+        return this.#essentialTemperature;
     }
 }
 
