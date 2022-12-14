@@ -3,6 +3,15 @@ $(document).ready(function () {
         $(".menu").toggleClass("active");
     });
 });
+$(".switch-btn").click(function () {
+    $(this).toggleClass("switch-on");
+    if ($(this).hasClass("switch-on")) {
+        $(this).trigger("on.switch");
+    } 
+    else {
+        $(this).trigger("off.switch");
+    }
+});
 
 import sensors from "./sensors/index.js";
 import appliances from "./appliances/index.js";
