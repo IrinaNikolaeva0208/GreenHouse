@@ -9,10 +9,14 @@ class Humidlifier extends Appliance {
         this.#essentialHumidity = humidity;
     }
 
-    getEssentialHumidity() {
+    getCurrentHumidity() {
         return this._isSwitchedOn
             ? this.#essentialHumidity
             : greenhouseConditions.Humidity;
+    }
+
+    getEssentialHumidity() {
+        return this.#essentialHumidity;
     }
 }
 

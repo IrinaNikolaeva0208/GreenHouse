@@ -2,9 +2,9 @@ let numberOfDay = 0,
     numberOfHour = 0;
 
 const timer_block = document.querySelector(".timer");
-const timeBlockCommonText = `${localStorage.getItem(
+const timeBlockCommonText = `${sessionStorage.getItem(
     "culture"
-)}, cycle start: ${localStorage
+)}, cycle start: ${sessionStorage
     .getItem("startDate")
     .split("-")
     .reverse()
