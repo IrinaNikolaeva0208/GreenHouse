@@ -11,7 +11,7 @@ body {
 }
 
 nav {
-    height: 8%;
+    height: 50px;
 }
 
 .bg-color {
@@ -87,12 +87,27 @@ p {
 }
 
 .container {
-    margin: 40px;
-    max-width: 1200px;
+    position: relative;
+    width: 1200px;
+    margin-top: 0;
+    margin-bottom: 40px;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #262626;
     text-align: center;
+    z-index: 0;
+}
+
+.inv {
+    position: absolute;
+    top: 190px;
+    left: 120px;
+    z-index: 3;
+    opacity: 0;
+}
+
+.nb {
+    border: none;
 }
 
 .h_row {
@@ -117,7 +132,7 @@ p {
 
 .time {
     display: flex;
-    margin-top: 40px;
+    margin : 40px;
     background-color: rgba(252, 81, 133, 0.3);
     min-height: 60px;
     max-width: 1200px;
