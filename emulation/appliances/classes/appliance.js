@@ -8,11 +8,11 @@ class Appliance {
         this._appliancePositionY = appliancePositionY;
     }
 
-    getAppliancePositionX() {
+    getPositionX() {
         return this._appliancePositionX;
     }
 
-    getAppliancePositionY() {
+    getPositionY() {
         return this._appliancePositionY;
     }
 

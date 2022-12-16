@@ -24,12 +24,10 @@ class Sensor {
         let distanceToClosestAppliance = 20;
         for (let parameterAppliance of parameterAppliances) {
             let distanceToApplianceX = Math.abs(
-                parameterAppliance.getAppliancePositionX() -
-                    this.#sensorPositionX
+                parameterAppliance.getPositionX() - this.#sensorPositionX
             );
             let distanceToApplianceY = Math.abs(
-                parameterAppliance.getAppliancePositionY() -
-                    this.#sensorPositionY
+                parameterAppliance.getPositionY() - this.#sensorPositionY
             );
 
             let maxDistanceToAppliance =
@@ -87,6 +85,14 @@ class Sensor {
                 this.#sensorPositionY += 1;
                 break;
         }
+    }
+
+    getPositionX() {
+        return this.#sensorPositionX;
+    }
+
+    getPositionY() {
+        return this.#sensorPositionY;
     }
 }
 

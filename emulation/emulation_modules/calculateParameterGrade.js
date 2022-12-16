@@ -11,10 +11,10 @@ export default function calculateParameterGrade(
     parameter
 ) {
     const distancesToPlantX = applianceArray.map(
-        (app) => app.getAppliancePositionX() - plant.getPlantPositionX()
+        (app) => app.getPositionX() - plant.getPlantPositionX()
     );
     const distancesToPlantY = applianceArray.map(
-        (app) => app.getAppliancePositionY() - plant.getPlantPositionY()
+        (app) => app.getPositionY() - plant.getPlantPositionY()
     );
 
     let parameterCoefficient = greenhouseConditions[parameter];

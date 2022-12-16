@@ -1,9 +1,8 @@
-import sensors from "./sensors/index.js";
 import appliances from "./appliances/index.js";
 import checkConditions from "./emulation_modules/checkConditions.js";
 import changeEmulationTime from "./emulation_modules/changeEmulationTime.js";
 import growPlants from "./emulation_modules/growPlants.js";
-import greenhouseConditions from "./emulation_modules/greenhouseConditions.js";
+import showParameterValuesOnSensors from "./emulation_modules/showParameterValuesOnSensors.js";
 
 $(document).ready(function () {
     $(".toggle").click(function () {
@@ -20,12 +19,12 @@ $(".switch-btn").click(function () {
     if ($(this).hasClass("heater-btn"))
         for (let heater of appliances.heaters)
             heater.getState() ? heater.switchOff() : heater.switchOn();
-    if ($(this).hasClass("humidlifier-btn"))
+    else if ($(this).hasClass("humidlifier-btn"))
         for (let humidlifier of appliances.humidlifiers)
             humidlifier.getState()
                 ? humidlifier.switchOff()
                 : humidlifier.switchOn();
-    if ($(this).hasClass("light-btn"))
+    else if ($(this).hasClass("light-btn"))
         for (let lightSource of appliances.lightSources)
             lightSource.getState()
                 ? lightSource.switchOff()
@@ -37,6 +36,23 @@ $(".switch-btn").click(function () {
                 : fertilizerDispenser.switchOn();
 });
 
+let container = document.querySelector(".inv");
+for (let applianceArray in appliances) {
+    for (let appliance of appliances[applianceArray]) {
+        console.log(appliances, appliances[applianceArray], appliance);
+        const applianceBlock = document.createElement("div");
+        applianceBlock.setAttribute(
+            "style",
+            `position:absolute;top:${
+                (5 - appliance.getPositionY()) * 100 - 8
+            }px;left:${
+                appliance.getPositionX() * 120 - 1
+            }px;width:40px;height:40px;background:url(../assets/icons/${applianceArray}.png);background-size:cover;`
+        );
+        container.prepend(applianceBlock);
+    }
+}
+
 //Nujno sozdat' bloki na kazdiy pribor, vse pribory hranyatsya v ob'ekte APPLIANCES v formate key(nazvanie): value(massiv etih priborov)
 //ne prinadlejat setke/flexu, (position relative ?)
 //nuzen takoy ze ob'ekt
@@ -45,33 +61,6 @@ $(".switch-btn").click(function () {
 //S datchikami to ze, chto i s priborami, tolko v ob'ekte lezat ne massivy, a prosto po odnomy datchiku dlya kazdogo parametra
 
 //potom na datchiki i pribory nalozhim eventListener, choby ih mozno bylo dvigat'
-
-function showParameterValuesOnSensors() {
-    for (let sensor in sensors) {
-        switch (sensor) {
-            case "humiditySensor":
-                sensors[sensor].calculateParameterValue(
-                    appliances.humidlifiers,
-                    greenhouseConditions.Humidity
-                );
-                break;
-            case "aciditySensor":
-                sensors[sensor].calculateParameterValue(
-                    appliances.fertilizerDispensers,
-                    greenhouseConditions.Acidity
-                );
-                break;
-            case "temperatureSensor":
-                sensors[sensor].calculateParameterValue(
-                    appliances.heaters,
-                    greenhouseConditions.Temperature
-                );
-                break;
-        }
-        let parametersValue = sensors[sensor].getParameterValue();
-        //pokazat' znachenie na sensore
-    }
-}
 
 function emulateGreenhouse() {
     const currentDay = changeEmulationTime(emulateGreenhouse);

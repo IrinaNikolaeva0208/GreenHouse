@@ -1,5 +1,56 @@
 const url = "http://localhost:8000/plan_db";
 
+const ball = document.querySelector("div");
+ball.setAttribute("style", "width:70px;height:70px;background-color:blue");
+ball.setAttribute("draggable", "true");
+ball.style.position = "absolute";
+ball.style.zIndex = 1000;
+document.body.append(ball);
+
+let currentPositionX;
+let currentPositionY;
+
+ball.ondragstart = function (event) {
+    currentPositionX = event.pageX;
+    currentPositionY = event.pageY;
+};
+
+let balltop;
+let ballleft;
+ball.ondrag = function (event) {
+    const pageX = event.pageX;
+    const pageY = event.pageY;
+    if (currentPositionX < pageX) {
+        ball.style.left =
+            pageX - ball.style.left.slice(0, -2) < 100
+                ? ball.style.left
+                : 100 + +ball.style.left.slice(0, -2) + "px";
+    } else {
+        ball.style.left =
+            pageX - ball.style.left.slice(0, -2) > -100
+                ? ball.style.left
+                : -100 + +ball.style.left.slice(0, -2) + "px";
+    }
+    if (currentPositionY < pageY) {
+        ball.style.top =
+            pageY - ball.style.top.slice(0, -2) < 100
+                ? ball.style.top
+                : 100 + +ball.style.top.slice(0, -2) + "px";
+    } else {
+        ball.style.top =
+            pageY - ball.style.top.slice(0, -2) > -100
+                ? ball.style.top
+                : -100 + +ball.style.top.slice(0, -2) + "px";
+    }
+    balltop = ball.style.top;
+    ballleft = ball.style.left;
+};
+
+ball.ondragend = function () {
+    ball.style.top = 100 + +balltop.slice(0, -2) + "px";
+    ball.style.left = 100 + +ballleft.slice(0, -2) + "px";
+};
+
 //TODO
 //При загрузке страницы нужно делать запрос в бд для получения ее содержимого и отрисовывать его в виде таблицы со столбцами,
 //соответствующими параметрам плана. +У каждой культуры (в каждом ряду) есть две кнопки: редактировать и удалить

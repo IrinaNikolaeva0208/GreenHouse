@@ -100,13 +100,11 @@ p {
 
 .inv {
     position: absolute;
-    top: 190px;
-    left: 120px;
+    top: -10px;
+    left: -20px;
+    width: 1240px;
+    height: 522px;
     z-index: 3;
-    opacity: 0;
-}
-
-.nb {
     border: none;
 }
 
@@ -120,6 +118,10 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.nb {
+    border: none;
 }
 
 .plant_icon {
