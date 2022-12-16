@@ -3,6 +3,8 @@ import checkConditions from "./emulation_modules/checkConditions.js";
 import changeEmulationTime from "./emulation_modules/changeEmulationTime.js";
 import growPlants from "./emulation_modules/growPlants.js";
 import showParameterValuesOnSensors from "./emulation_modules/showParameterValuesOnSensors.js";
+import "./emulation_modules/dragAppliances.js";
+import "./emulation_modules/dragSensors.js";
 
 $(document).ready(function () {
     $(".toggle").click(function () {
@@ -35,32 +37,6 @@ $(".switch-btn").click(function () {
                 ? fertilizerDispenser.switchOff()
                 : fertilizerDispenser.switchOn();
 });
-
-let container = document.querySelector(".inv");
-for (let applianceArray in appliances) {
-    for (let appliance of appliances[applianceArray]) {
-        console.log(appliances, appliances[applianceArray], appliance);
-        const applianceBlock = document.createElement("div");
-        applianceBlock.setAttribute(
-            "style",
-            `position:absolute;top:${
-                (5 - appliance.getPositionY()) * 100 - 8
-            }px;left:${
-                appliance.getPositionX() * 120 - 1
-            }px;width:40px;height:40px;background:url(../assets/icons/${applianceArray}.png);background-size:cover;`
-        );
-        container.prepend(applianceBlock);
-    }
-}
-
-//Nujno sozdat' bloki na kazdiy pribor, vse pribory hranyatsya v ob'ekte APPLIANCES v formate key(nazvanie): value(massiv etih priborov)
-//ne prinadlejat setke/flexu, (position relative ?)
-//nuzen takoy ze ob'ekt
-//v kazdom pribore est' ego mestopologenie v teplitse, gde (0, 0) - leviy nizniy ugol tseplitsy (zdes' X i Y - uzly setki)
-
-//S datchikami to ze, chto i s priborami, tolko v ob'ekte lezat ne massivy, a prosto po odnomy datchiku dlya kazdogo parametra
-
-//potom na datchiki i pribory nalozhim eventListener, choby ih mozno bylo dvigat'
 
 function emulateGreenhouse() {
     const currentDay = changeEmulationTime(emulateGreenhouse);

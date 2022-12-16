@@ -28,24 +28,11 @@ class Appliance {
         return this._isSwitchedOn;
     }
 
-    changePosition(direction) {
-        switch (direction) {
-            case "down":
-                this._appliancePositionY -= 1;
-                break;
-
-            case "up":
-                this._appliancePositionY += 1;
-                break;
-
-            case "left":
-                this._appliancePositionX -= 1;
-                break;
-
-            case "right":
-                this._appliancePositionX += 1;
-                break;
-        }
+    changePosition(top, left) {
+        console.log(top, left);
+        this._appliancePositionX = left / 120;
+        this._appliancePositionY = 5 - top / 100;
+        console.log(this._appliancePositionX, this._appliancePositionY);
     }
 }
 

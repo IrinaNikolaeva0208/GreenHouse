@@ -39,6 +39,14 @@ class Sensor {
         }
 
         switch (distanceToClosestAppliance) {
+            case 0:
+                this.#parameterValue = getProperParameterValue(
+                    parameterGreenhouseCondition,
+                    this.#parameter,
+                    parameterAppliances,
+                    1
+                );
+                break;
             case 1:
                 this.#parameterValue = getProperParameterValue(
                     parameterGreenhouseCondition,
@@ -67,24 +75,9 @@ class Sensor {
         }
     }
 
-    changePosition(direction) {
-        switch (direction) {
-            case "down":
-                this.#sensorPositionY -= 1;
-                break;
-
-            case "up":
-                this.#sensorPositionY += 1;
-                break;
-
-            case "left":
-                this.#sensorPositionY -= 1;
-                break;
-
-            case "right":
-                this.#sensorPositionY += 1;
-                break;
-        }
+    changePosition(top, left) {
+        this.#sensorPositionX = left / 120;
+        this.#sensorPositionY = 5 - top / 100;
     }
 
     getPositionX() {
