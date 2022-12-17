@@ -42,20 +42,20 @@
   
         <dialog>
           <header>
-            <h2>So This is a Modal</h2>
+            <h2>Add item</h2>
           </header>
-          <div class="plan-item">Culture<input class="plan-item-input close" type="text"></div>
-          <div class="plan-item">Humidity, %<input class="plan-item-input close" type="number"></div>
-          <div class="plan-item">Temperature, C<input class="plan-item-input" type="number"></div>
-          <div class="plan-item">Acidity, pH<input class="plan-item-input" type="number"></div>
-          <div class="plan-item">Light, lx<input class="plan-item-input" type="number"></div>
-          <label for="toggle">Confirm</label>
+          <div class="plan-item">Culture<input class="plan-item-input add-culture close" type="text"></div>
+          <div class="plan-item">Humidity, %<input class="plan-item-input add-humidity close" type="number"></div>
+          <div class="plan-item">Temperature, C<input class="plan-item-input add-temperature" type="number"></div>
+          <div class="plan-item">Acidity, pH<input class="plan-item-input add-acidity" type="number"></div>
+          <div class="plan-item">Light, lx<input class="plan-item-input add-lightLevel" type="number"></div>
+          <label class="add-confirm" for="toggle">Confirm</label>
           <label for="toggle">Close</label>
         </dialog>
 
       </div>
     </div>
-    <div class="row">
+    <div class="row additional">
       <div class="col culture">
         <h1>Culture</h1>
       </div>
@@ -74,62 +74,35 @@
       <div class="col">
         <div class="flex">
           <input type="checkbox" id="toggle_edit">
-        <label for="toggle_edit">Edit</label>
+        <label class="edit-item" for="toggle_edit">Edit</label>
   
         <dialog>
           <header>
             <h2>Edit</h2>
           </header>
-          <div class="plan-item">Humidity, %<input class="plan-item-input close" type="number"></div>
-          <div class="plan-item">Temperature, C<input class="plan-item-input" type="number"></div>
-          <div class="plan-item">Acidity, pH<input class="plan-item-input" type="number"></div>
-          <div class="plan-item">Light, lx<input class="plan-item-input" type="number"></div>
-          <label for="toggle_edit">Confirm</label>
+          <div class="plan-item">Humidity, %<input class="plan-item-input edit-humidity close" type="number"></div>
+          <div class="plan-item">Temperature, C<input class="plan-item-input edit-temperature" type="number"></div>
+          <div class="plan-item">Acidity, pH<input class="plan-item-input edit-acidity" type="number"></div>
+          <div class="plan-item">Light, lx<input class="plan-item-input edit-lightLevel" type="number"></div>
+          <label class="confirm-edit-btn" for="toggle_edit">Confirm</label>
           <label for="toggle_edit">Close</label>
         </dialog>
         </div>
         <div class="flex">
         <input type="checkbox" id="toggle_del">
-        <label for="toggle_del">Delete</label>
+        <label class="delete-btn" for="toggle_del">Delete</label>
   
         <dialog>
           <h2>Are you sure you want to delete the item?</h2>
-          <label for="toggle_del">Yes</label>
+          <label class="delete-item" for="toggle_del">Yes</label>
           <label for="toggle_del">No</label>
         </dialog>
         </div>
       </div>
-
+    </div>
   
     </div>
-    <div class="row">
-      <div class="col culture">
-        <h1>Culture</h1>
-      </div>
-      <div class="col humidity">
-        <h1>Humidity</h1>
-      </div>
-      <div class="col acidity">
-        <h1>Acidity</h1>
-      </div>
-      <div class="col lightLevel">
-        <h1>LightLevel</h1>
-      </div>
-      <div class="col temperature">
-        <h1>Temperature</h1>
-      </div>
-      <div class="col">
-        <div class="flex">
-          <input type="checkbox" id="toggle_edit">
-        <label for="toggle_edit">Edit</label>
-        </div>
-        <div class="flex">
-        <input type="checkbox" id="toggle_del">
-        <label for="toggle_del">Delete</label>
-        </div>
-      </div>
-    </div>
-  </div>
+    
   <div class="btn-block">
     <a href="../settings/index.html"><button class="btn btn-back">Go back</button></a>
 </div>

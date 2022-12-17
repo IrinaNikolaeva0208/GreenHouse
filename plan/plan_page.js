@@ -1,55 +1,97 @@
 const url = "http://localhost:8000/plan_db";
 
-//TODO
-//При загрузке страницы нужно делать запрос в бд для получения ее содержимого и отрисовывать его в виде таблицы со столбцами,
-//соответствующими параметрам плана. +У каждой культуры (в каждом ряду) есть две кнопки: редактировать и удалить
-//(можно с англ. текстом или иконками), выполняющие соответствующие действия с бд. Отдельно есть кнопка добавления
-//(также с текстом или иконкой) для добавления культуры. Она вызывает всплывающее окно с инпутами для каждого параметра, и кнопкой подтверждения
-//Клик мимо окна вызывает его закрытие, клик по кнопке - добавление культуры в бд. Кнопки удаления, изменения, подтверждения обновляют страницу
-//Есть кнопка НАЗАД, являющаяся ссылкой на "../settings". При отсутствии данных в бд отображаются только кнопки ДОБАВИТЬ, НАЗАД и какой-нибудь
-//текст на англ, типа планов не найдено. Ниже - рабочие примеры взаимодействия с бд
+let node = document.querySelector(".additional");
+const result = await fetch(url);
+let cultureList = await result.json();
+cultureList.sort((item1, item2) => item1.culture.localeCompare(item2.culture));
 
-//Получить массив доступных растений
-// const result = await fetch(url);
-// let cultureList = await result.json();
+let container = document.querySelector(".container");
+if (!cultureList.length) {
+    node.innerHTML = "No plans found";
+} else {
+    for (let plan of cultureList) {
+        if (!cultureList.indexOf(plan)) {
+            for (let childNum = 1; childNum <= 9; childNum += 2)
+                node.childNodes[childNum].textContent =
+                    plan[node.childNodes[childNum].classList[1]];
+        } else {
+            const planRow = node.cloneNode(true);
+            for (let childNum = 1; childNum <= 9; childNum += 2)
+                planRow.childNodes[childNum].textContent =
+                    plan[planRow.childNodes[childNum].classList[1]];
+            container.appendChild(planRow);
+        }
+    }
+}
 
-//Пример добавления растения
-// const newPlan = {
-//     culture: "Strawberry",
-//     humidity: 70,
-//     temperature: 20,
-//     acidity: 6.5,
-//     lightLevel: 4000,
-// };
-// await fetch(url, {
-//     method: "POST",
-//     body: JSON.stringify(newPlan),
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-// });
+const confirmAddButton = document.querySelector(".add-confirm");
+confirmAddButton.addEventListener("click", async () => {
+    const newPlan = {
+        culture: document.querySelector(".add-culture").value,
+        humidity: document.querySelector(".add-humidity").value,
+        temperature: document.querySelector(".add-temperature").value,
+        acidity: document.querySelector(".add-acidity").value,
+        lightLevel: document.querySelector(".add-lightLevel").value,
+    };
+    await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(newPlan),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    location.reload();
+});
 
-//Пример удаления растения
-// await fetch(url+":culture", {
-//     method: "DELETE",
-//     body: JSON.stringify({ culture: "Tomatoes" }),
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-// });
+const deleteButtons = document.querySelectorAll(".delete-btn");
+let currentDeleteBtn;
+for (let button of deleteButtons)
+    button.addEventListener("click", () => {
+        currentDeleteBtn = button;
+    });
 
-//Пример изменения плана
-// const newCulturePlan = {
-//     culture: "Radish",
-//     humidity: 70,
-//     temperature: 20,
-//     acidity: 6.5,
-//     lightLevel: 4000,
-// };
-// await fetch(url + ":culture", {
-//     method: "PUT",
-//     body: JSON.stringify(newCulturePlan),
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-// });
+const confirmDeleteButtons = document.querySelectorAll(".delete-item");
+for (let button of confirmDeleteButtons)
+    button.addEventListener("click", async () => {
+        const cultureToDelete =
+            currentDeleteBtn.parentNode.parentNode.parentNode.childNodes[1]
+                .textContent;
+        await fetch(url + ":culture", {
+            method: "DELETE",
+            body: JSON.stringify({ culture: cultureToDelete }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        location.reload();
+    });
+
+const editButtons = document.querySelectorAll(".edit-item");
+let currentEditBtn;
+for (let button of editButtons)
+    button.addEventListener("click", () => {
+        currentEditBtn = button;
+    });
+
+const confirmEditButtons = document.querySelectorAll(".confirm-edit-btn");
+for (let button of confirmEditButtons)
+    button.addEventListener("click", async () => {
+        const cultureToEdit =
+            currentEditBtn.parentNode.parentNode.parentNode.childNodes[1]
+                .textContent;
+        const newCulturePlan = {
+            culture: cultureToEdit,
+            humidity: document.querySelector(".edit-humidity").value,
+            temperature: document.querySelector(".edit-temperature").value,
+            acidity: document.querySelector(".edit-acidity").value,
+            lightLevel: document.querySelector(".edit-lightLevel").value,
+        };
+        await fetch(url + ":culture", {
+            method: "PUT",
+            body: JSON.stringify(newCulturePlan),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        location.reload();
+    });
