@@ -37,29 +37,22 @@
         <h1>Temperature</h1>
       </div>
       <div class="col">
-        <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn">add</button>
-          <div id="myDropdown" class="dropdown-content">
-            <div class="culture">
-              <h1>Culture</h1>
-            </div>
-            <div class="humidity">
-              <h1>Humidity</h1>
-            </div>
-            <div class="acidity">
-              <h1>Acidity</h1>
-            </div>
-            <div class="lightLevel">
-              <h1>LightLevel</h1>
-            </div>
-            <div class="temperature">
-              <h1>Temperature</h1>
-            </div>
-            <div class="add">
-              <h1>Add</h1>
-            </div>
-          </div>
-        </div>
+        <input type="checkbox" id="toggle">
+        <label for="toggle">Add</label>
+  
+        <dialog>
+          <header>
+            <h2>So This is a Modal</h2>
+          </header>
+          <div class="plan-item">Culture<input class="plan-item-input close" type="text"></div>
+          <div class="plan-item">Humidity, %<input class="plan-item-input close" type="number"></div>
+          <div class="plan-item">Temperature, C<input class="plan-item-input" type="number"></div>
+          <div class="plan-item">Acidity, pH<input class="plan-item-input" type="number"></div>
+          <div class="plan-item">Light, lx<input class="plan-item-input" type="number"></div>
+          <label for="toggle">Confirm</label>
+          <label for="toggle">Close</label>
+        </dialog>
+
       </div>
     </div>
     <div class="row">
@@ -79,27 +72,67 @@
         <h1>Temperature</h1>
       </div>
       <div class="col">
+        <div class="flex">
+          <input type="checkbox" id="toggle_edit">
+        <label for="toggle_edit">Edit</label>
+  
+        <dialog>
+          <header>
+            <h2>Edit</h2>
+          </header>
+          <div class="plan-item">Humidity, %<input class="plan-item-input close" type="number"></div>
+          <div class="plan-item">Temperature, C<input class="plan-item-input" type="number"></div>
+          <div class="plan-item">Acidity, pH<input class="plan-item-input" type="number"></div>
+          <div class="plan-item">Light, lx<input class="plan-item-input" type="number"></div>
+          <label for="toggle_edit">Confirm</label>
+          <label for="toggle_edit">Close</label>
+        </dialog>
+        </div>
+        <div class="flex">
+        <input type="checkbox" id="toggle_del">
+        <label for="toggle_del">Delete</label>
+  
+        <dialog>
+          <h2>Are you sure you want to delete the item?</h2>
+          <label for="toggle_del">Yes</label>
+          <label for="toggle_del">No</label>
+        </dialog>
+        </div>
+      </div>
+
+  
+    </div>
+    <div class="row">
+      <div class="col culture">
+        <h1>Culture</h1>
+      </div>
+      <div class="col humidity">
+        <h1>Humidity</h1>
+      </div>
+      <div class="col acidity">
+        <h1>Acidity</h1>
+      </div>
+      <div class="col lightLevel">
+        <h1>LightLevel</h1>
+      </div>
+      <div class="col temperature">
+        <h1>Temperature</h1>
+      </div>
+      <div class="col">
+        <div class="flex">
+          <input type="checkbox" id="toggle_edit">
+        <label for="toggle_edit">Edit</label>
+        </div>
+        <div class="flex">
+        <input type="checkbox" id="toggle_del">
+        <label for="toggle_del">Delete</label>
+        </div>
       </div>
     </div>
   </div>
+  <div class="btn-block">
+    <a href="../settings/index.html"><button class="btn btn-back">Go back</button></a>
+</div>
 </body>
-<script>
-  function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-
-  // Закроется  , если пользователь щелкает за его пределами
-  window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
-</script>
-</html>
+  
+  </html>
